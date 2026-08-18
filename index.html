@@ -7,25 +7,29 @@
 <meta name="description" content="A community publishing lane on Agent Exchange for Trailblazers to share Salesforce agents and assets from GitHub." />
 <style>
   :root {
-    /* Trailhead palette */
-    --th-navy: #032d60;        /* deep Trailhead navy */
-    --th-navy-2: #001639;
-    --th-blue: #1b96ff;        /* Trailhead bright blue */
-    --th-blue-dark: #0176d3;
-    --th-sky: #d8edff;
-    --th-green: #4bca81;       /* trail green */
-    --th-green-dark: #2e844a;
+    /* Authoritative Trailhead brand palette — brand.salesforce.com/guidelines/trailhead */
+    --th-navy: #032e61;        /* Dark Blue */
+    --th-navy-2: #021d3f;      /* deeper Dark Blue for bands/footer */
+    --th-purple: #741b89;      /* Purple Mountain — signature Trailhead accent */
+    --th-purple-light: #a372b5;/* Mauvelous — soft purple fills */
+    --th-sky: #8cd3f8;         /* Blue Sky */
+    --th-sky-wash: #e6f5fe;    /* light sky background wash */
+    --th-green: #009a44;       /* Astro Turf */
+    --th-green-dark: #046a38;  /* Forest Green */
     --th-sand: #fef3c7;
     --th-gold: #fcb52a;        /* badge gold */
+    /* semantic aliases kept for existing rules */
+    --th-blue: #741b89;        /* primary accent now Purple Mountain */
+    --th-blue-dark: #5a1370;
     --ink: #16325c;
     --ink-2: #3e5876;
     --ink-3: #747474;
     --line: #e5e5e5;
-    --bg: #f3f6fb;
+    --bg: #f4f2f8;             /* faint purple-tinted neutral */
     --card: #ffffff;
     --radius: 14px;
-    --shadow: 0 2px 8px rgba(3,45,96,.08);
-    --shadow-lg: 0 12px 32px rgba(3,45,96,.16);
+    --shadow: 0 2px 8px rgba(3,46,97,.08);
+    --shadow-lg: 0 12px 32px rgba(116,27,137,.16);
     --font: 'Salesforce Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -55,10 +59,10 @@
   .brand { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
   .brand .cloud {
     width: 46px; height: 46px; border-radius: 12px;
-    background: linear-gradient(135deg,var(--th-navy),var(--th-blue)); position: relative; flex-shrink: 0;
+    background: linear-gradient(150deg,var(--th-navy),var(--th-purple)); position: relative; flex-shrink: 0;
     display: flex; align-items: center; justify-content: center; color: #fff;
   }
-  .brand .name { font-size: 18px; font-weight: 800; color: var(--th-navy); line-height: 1.1; }
+  .brand .name { font-size: 18px; font-weight: 800; color: var(--th-purple); line-height: 1.1; }
   .brand .name span { display: block; font-size: 11px; font-weight: 600; color: var(--ink-3); letter-spacing: .06em; text-transform: uppercase; }
   .backlink { font-size: 13px; font-weight: 600; color: var(--ink-3); display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 8px; }
   .backlink:hover { background: #f0f4fa; color: var(--th-navy); }
@@ -87,35 +91,37 @@
 
   main { max-width: 1240px; margin: 0 auto; padding: 0 24px 80px; }
 
-  /* Trailhead-style hero */
+  /* Trailhead mountain-scene hero */
   .labs-hero {
     margin: 24px 0; border-radius: 22px; overflow: hidden; position: relative;
-    background: linear-gradient(120deg, var(--th-navy-2), var(--th-navy) 52%, #0b3d7a);
+    background: linear-gradient(160deg, #0b1f4a 0%, var(--th-navy) 34%, var(--th-purple) 100%);
     color: #fff; padding: 54px 56px; isolation: isolate;
   }
-  /* trail path motif */
+  /* sun glow + sky wash */
   .labs-hero::before {
-    content: ""; position: absolute; inset: 0; z-index: -1; opacity: .5;
+    content: ""; position: absolute; inset: 0; z-index: -2; opacity: .9;
     background-image:
-      radial-gradient(circle at 88% 18%, rgba(27,150,255,.5) 0, transparent 30%),
-      radial-gradient(circle at 78% 88%, rgba(75,202,129,.4) 0, transparent 30%);
+      radial-gradient(circle at 84% 12%, rgba(140,211,248,.55) 0, transparent 34%),
+      radial-gradient(circle at 20% 6%, rgba(163,114,181,.45) 0, transparent 40%);
   }
-  .labs-hero::after {
-    content: ""; position: absolute; inset: 0; z-index: -1; opacity: .35;
-    background-image: radial-gradient(rgba(255,255,255,.14) 1.5px, transparent 1.5px);
-    background-size: 26px 26px;
+  /* mountain-range silhouette along the bottom — the Trailhead motif */
+  .labs-hero .ridge { position: absolute; left: 0; right: 0; bottom: -1px; z-index: -1; width: 100%; height: 150px; display: block; }
+  .labs-hero .stars-bg {
+    content: ""; position: absolute; inset: 0 0 40% 0; z-index: -2; opacity: .5;
+    background-image: radial-gradient(rgba(255,255,255,.5) 1px, transparent 1px);
+    background-size: 30px 30px;
   }
-  .labs-hero .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--th-green); margin-bottom: 16px; }
+  .labs-hero .eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--th-sky); margin-bottom: 16px; }
   .labs-hero h1 { font-size: 44px; line-height: 1.06; font-weight: 800; max-width: 660px; letter-spacing: -.01em; }
-  .labs-hero p { font-size: 17px; max-width: 620px; margin-top: 16px; color: #d8e6f8; }
+  .labs-hero p { font-size: 17px; max-width: 620px; margin-top: 16px; color: #e6dcf0; }
   .labs-hero .hero-cta { display: flex; gap: 14px; margin-top: 30px; flex-wrap: wrap; }
-  .labs-hero .hero-cta .btn--primary { background: var(--th-blue); color: #fff; }
-  .labs-hero .hero-cta .btn--primary:hover { background: #3aa4ff; }
+  .labs-hero .hero-cta .btn--primary { background: #fff; color: var(--th-purple); }
+  .labs-hero .hero-cta .btn--primary:hover { background: var(--th-sky-wash); }
   .labs-hero .hero-cta .btn--outline { border-color: rgba(255,255,255,.6); color: #fff; }
   .labs-hero .hero-cta .btn--outline:hover { background: rgba(255,255,255,.12); }
   .hero-stats { display: flex; gap: 40px; margin-top: 40px; flex-wrap: wrap; }
   .hero-stats .stat .num { font-size: 30px; font-weight: 800; color: #fff; }
-  .hero-stats .stat .lbl { font-size: 13px; color: #a9c6e8; margin-top: 2px; }
+  .hero-stats .stat .lbl { font-size: 13px; color: #cbb8e0; margin-top: 2px; }
 
   .disclaimer {
     display: flex; gap: 14px; align-items: flex-start; background: var(--th-sand); border: 1px solid #fbd888;
@@ -167,13 +173,13 @@
   /* Framework / how-it-works — trail steps */
   .how { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin: 12px 0 8px; position: relative; }
   .how .step { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 24px 22px; position: relative; }
-  .how .step .n { width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg,var(--th-blue),var(--th-navy)); color: #fff; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 15px; margin-bottom: 14px; box-shadow: 0 3px 8px rgba(3,45,96,.25); }
+  .how .step .n { width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg,var(--th-purple),var(--th-navy)); color: #fff; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 15px; margin-bottom: 14px; box-shadow: 0 3px 8px rgba(116,27,137,.25); }
   .how .step h4 { font-size: 15px; margin-bottom: 6px; color: var(--th-navy); }
   .how .step p { font-size: 13px; color: var(--ink-3); }
 
   /* Framework pillars band */
-  .framework { background: linear-gradient(120deg,#0b3d7a,var(--th-navy)); border-radius: 20px; padding: 40px 44px; color: #fff; margin-top: 8px; }
-  .framework h3 { font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--th-green); }
+  .framework { background: linear-gradient(120deg,var(--th-navy),var(--th-purple)); border-radius: 20px; padding: 40px 44px; color: #fff; margin-top: 8px; }
+  .framework h3 { font-size: 13px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--th-sky); }
   .framework h2 { font-size: 26px; font-weight: 800; margin: 8px 0 26px; max-width: 640px; }
   .pillars { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; }
   .pillar { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 14px; padding: 22px; }
@@ -213,7 +219,7 @@
   .req-check { display: flex; gap: 10px; align-items: flex-start; padding: 10px 0; font-size: 13.5px; color: var(--ink-2); }
   .req-check input { accent-color: var(--th-blue); margin-top: 3px; }
 
-  footer { background: var(--th-navy-2); color: #a9c6e8; margin-top: 60px; }
+  footer { background: var(--th-navy-2); color: #cbb8e0; margin-top: 60px; }
   .footer-wrap { max-width: 1240px; margin: 0 auto; padding: 40px 24px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 30px; font-size: 13px; }
   footer .fcol h5 { color: #fff; font-size: 13px; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 12px; }
   footer .fcol a { display: block; padding: 4px 0; opacity: .85; }
@@ -245,8 +251,8 @@
   .repo-check { display: flex; align-items: center; gap: 10px; margin-top: 10px; font-size: 13px; color: var(--th-green-dark); font-weight: 700; }
   .repo-check.bad { color: #c0392b; }
 
-  .preview-wrap { border: 1px dashed #a9c6e8; border-radius: 12px; padding: 16px; background: #f2f8ff; }
-  .preview-wrap .plabel { font-size: 11px; text-transform: uppercase; letter-spacing: .07em; color: var(--th-blue-dark); font-weight: 800; margin-bottom: 12px; }
+  .preview-wrap { border: 1px dashed var(--th-purple-light); border-radius: 12px; padding: 16px; background: #f7f2fa; }
+  .preview-wrap .plabel { font-size: 11px; text-transform: uppercase; letter-spacing: .07em; color: var(--th-purple); font-weight: 800; margin-bottom: 12px; }
 
   .scan-head { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
   .scan-shield {
@@ -330,7 +336,13 @@
   <div class="header-main">
     <a class="brand" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
       <div class="cloud">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 20 L11 5 L13 5 L19 20" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 12 h4 M8 16 h6" stroke="#4bca81" stroke-width="2" stroke-linecap="round"/></svg>
+        <!-- Trailhead trail-marker: mountain scene inside a hiking trail marker -->
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <rect x="4" y="2.5" width="16" height="19" rx="5.5" fill="#fff"/>
+          <path d="M6 16.5 L10 9.5 L12.4 13.2 L14.8 8 L18 16.5 Z" fill="#741b89"/>
+          <circle cx="15.4" cy="7.2" r="1.6" fill="#fcb52a"/>
+          <rect x="6" y="16.2" width="12" height="2.2" fill="#009a44"/>
+        </svg>
       </div>
       <div class="name">Trailblazer Labs<span>by Salesforce · Agent Exchange</span></div>
     </a>
@@ -347,6 +359,12 @@
 
 <main>
   <div class="labs-hero">
+    <div class="stars-bg"></div>
+    <!-- Trailhead mountain-range silhouette -->
+    <svg class="ridge" viewBox="0 0 1440 150" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 150 L0 96 L180 40 L320 92 L470 26 L640 88 L820 34 L1010 92 L1180 48 L1320 84 L1440 44 L1440 150 Z" fill="#5a1370" opacity=".65"/>
+      <path d="M0 150 L0 120 L150 78 L340 118 L520 70 L720 116 L900 74 L1120 118 L1300 84 L1440 116 L1440 150 Z" fill="#741b89" opacity=".9"/>
+    </svg>
     <div class="eyebrow">✦ Trailblazer Labs · Community Agent Publishing</div>
     <h1>Built by Trailblazers. Shared with everyone.</h1>
     <p>A lightweight publishing lane for the community — MVPs, hobbyists, and independent developers. Link a GitHub repo, add a demo, and share your Salesforce agents and assets. No commercial entity required.</p>
@@ -457,8 +475,8 @@
 <div class="modal-overlay" id="submit-modal" onclick="if(event.target===this)closeModal('submit-modal')">
   <div class="modal wizard-modal" style="position:relative;">
     <button class="modal-close" onclick="closeModal('submit-modal')">×</button>
-    <div class="modal-hero" style="background:linear-gradient(120deg,#001639,#032d60 55%,#0b3d7a); padding:26px 36px 22px;">
-      <div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#4bca81;">✦ Trailblazer Labs · Publish</div>
+    <div class="modal-hero" style="background:linear-gradient(120deg,#021d3f,#032e61 50%,#741b89); padding:26px 36px 22px;">
+      <div style="font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#8cd3f8;">✦ Trailblazer Labs · Publish</div>
       <h2 style="font-size:22px;">Publish a community asset</h2>
       <div class="m-pub">Link a GitHub repo · automated security scan · list to the community lane</div>
     </div>
@@ -566,7 +584,7 @@
 <footer>
   <div class="footer-wrap">
     <div class="fcol">
-      <div class="brand" style="margin-bottom:10px;"><div class="cloud"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 20 L11 5 L13 5 L19 20" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 12 h4 M8 16 h6" stroke="#4bca81" stroke-width="2" stroke-linecap="round"/></svg></div><div class="name" style="color:#fff;">Trailblazer Labs<span style="color:#a9c6e8;">by Salesforce</span></div></div>
+      <div class="brand" style="margin-bottom:10px;"><div class="cloud"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="2.5" width="16" height="19" rx="5.5" fill="#fff"/><path d="M6 16.5 L10 9.5 L12.4 13.2 L14.8 8 L18 16.5 Z" fill="#741b89"/><circle cx="15.4" cy="7.2" r="1.6" fill="#fcb52a"/><rect x="6" y="16.2" width="12" height="2.2" fill="#009a44"/></svg></div><div class="name" style="color:#fff;">Trailblazer Labs<span style="color:#cbb8e0;">by Salesforce</span></div></div>
       <p style="max-width:260px;opacity:.8;">A community lane on Agent Exchange for individual builders to publish and share Salesforce agents.</p>
     </div>
     <div class="fcol"><h5>Trailblazer Labs</h5><a href="#" onclick="document.querySelector('.grid').scrollIntoView();return false;">Browse community assets</a><a href="#" onclick="openSubmit();return false;">Publish your asset</a><a href="#labs-how">Publishing guidelines</a><a href="#labs-how">Open-source license help</a></div>
@@ -578,12 +596,12 @@
 
 <script>
   const gradients = [
-    'linear-gradient(120deg,#032d60,#1b96ff)',
-    'linear-gradient(120deg,#0176d3,#00a1e0)',
-    'linear-gradient(120deg,#2e844a,#4bca81)',
-    'linear-gradient(120deg,#0b3d7a,#1b96ff)',
-    'linear-gradient(120deg,#001639,#0176d3)',
-    'linear-gradient(120deg,#0b52a0,#00a1e0)'
+    'linear-gradient(120deg,#032e61,#741b89)',   /* Dark Blue → Purple Mountain */
+    'linear-gradient(120deg,#741b89,#a372b5)',   /* Purple Mountain → Mauvelous */
+    'linear-gradient(120deg,#046a38,#009a44)',   /* Forest → Astro Turf */
+    'linear-gradient(120deg,#741b89,#8cd3f8)',   /* Purple → Blue Sky */
+    'linear-gradient(120deg,#032e61,#8cd3f8)',   /* Dark Blue → Blue Sky */
+    'linear-gradient(120deg,#5a1370,#032e61)'    /* deep Purple → Dark Blue */
   ];
 
   const labs = [
@@ -833,7 +851,7 @@
       <div class="preview-wrap">
         <div class="plabel">Listing preview</div>
         <div class="card" style="cursor:default; max-width:340px;">
-          <div class="banner" style="background:linear-gradient(120deg,#032d60,#1b96ff)"></div>
+          <div class="banner" style="background:linear-gradient(120deg,#032e61,#741b89)"></div>
           <div class="card-logo">🚀</div>
           <div class="card-body">
             <div class="card-title">${name}</div>
